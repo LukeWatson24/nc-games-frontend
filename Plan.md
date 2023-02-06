@@ -1,1 +1,3 @@
-![Plan](FE-PLAN.png)
+# Plan
+
+![Plan](plans/FE-PLAN.png)
