@@ -1,7 +1,14 @@
+.review_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .content {
   font-family: "Poppins", sans-serif;
   margin-top: 1rem;
   padding-bottom: 1rem;
+  max-width: 800px;
 }
 .content div {
   display: flex;
@@ -24,6 +31,8 @@
 .comments {
   font-family: "Poppins", sans-serif;
   margin-top: 1rem;
+  width: 100%;
+  max-width: 800px;
 }
 .comments .wrapper {
   display: flex;
@@ -59,4 +68,20 @@
      object-fit: cover;
   border: 1px solid #222222;
   border-radius: 0.5rem;
+}
+
+@media (min-width: 1250px) {
+  .content {
+    margin: 1rem 10rem 0 10rem;
+    width: 100%;
+  }
+  .comments {
+    margin: 1rem 10rem 0 10rem;
+    width: 100%;
+  }
+  .review_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }/*# sourceMappingURL=review.module.css.map */
