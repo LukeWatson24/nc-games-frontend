@@ -4,7 +4,7 @@ import { loginUser } from "../utils/utils";
 export const TokenContext = createContext(null);
 
 export default function TokenProvider({ children }) {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(undefined);
   useEffect(() => {
     loginUser({ username: "jessjelly", password: "jessjelly" }).then((res) =>
       setToken(res)

@@ -1,0 +1,17 @@
+.wrapper {
+  position: fixed;
+  bottom: 0;
+  color: white;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  background-color: rgba(34, 34, 34, 0.95);
+}
+
+button {
+  color: white;
+}
+
+div.hidden {
+  display: none;
+}/*# sourceMappingURL=errors.module.css.map */

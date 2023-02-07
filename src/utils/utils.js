@@ -30,7 +30,7 @@ async function loginUser(userInfo) {
 }
 
 function patchReviewVote(id, inc_votes, token) {
-  api.patch(
+  return api.patch(
     "/reviews/" + id,
     { inc_votes },
     { headers: { "x-access-token": token } }
