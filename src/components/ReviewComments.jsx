@@ -20,6 +20,7 @@ function ReviewComments({ reviewId }) {
     <section className={styles.comments}>
       <h2 className={!loading ? "" : utils.hidden}>Comments</h2>
       <p className={loading ? "" : utils.hidden}>Loading...</p>
+      <CommentForm reviewId={reviewId} setComments={setComments} />
       <div className={styles.wrapper}>
         {comments.length === 0
           ? "No comments yet..."
@@ -27,7 +28,6 @@ function ReviewComments({ reviewId }) {
               <Comment key={comment.comment_id} comment={comment} />
             ))}
       </div>
-      <CommentForm />
     </section>
   );
 }

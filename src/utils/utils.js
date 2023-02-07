@@ -9,12 +9,12 @@ async function getReviews(queries) {
 }
 
 async function getReviewById(id) {
-  const { data } = await api.get("/reviews/" + id);
+  const { data } = await api.get(`/reviews/${id}`);
   return data.review;
 }
 
 async function getReviewComments(id) {
-  const { data } = await api.get("/reviews/" + id + "/comments");
+  const { data } = await api.get(`/reviews/${id}/comments`);
   return data.comments;
 }
 
@@ -30,11 +30,24 @@ async function loginUser(userInfo) {
 }
 
 function patchReviewVote(id, inc_votes, token) {
-  return api.patch(
-    "/reviews/" + id,
-    { inc_votes },
-    { headers: { "x-access-token": token } }
+  return api.patch(`/reviews/${id}`, { inc_votes }, setTokenHeader(token));
+}
+
+async function getLoggedInUser(token) {
+  const { username } = jwt_decode(token);
+  return await getUser(username);
+}
+
+function postReviewComment(id, body, username, token) {
+  return api.post(
+    `/reviews/${id}/comments`,
+    { username, body },
+    setTokenHeader(token)
   );
+}
+
+function setTokenHeader(token) {
+  return { headers: { "x-access-token": token } };
 }
 
 export {
@@ -43,6 +56,7 @@ export {
   getReviewComments,
   getUser,
   loginUser,
-  jwt_decode,
   patchReviewVote,
+  getLoggedInUser,
+  postReviewComment,
 };

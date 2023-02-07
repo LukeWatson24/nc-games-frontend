@@ -56,7 +56,7 @@
   align-items: center;
   gap: 1rem;
 }
-.single_comment .user p:first-of-type {
+.single_comment .user p {
   font-weight: 500;
 }
 .single_comment .user img {
@@ -66,6 +66,80 @@
      object-fit: cover;
   border: 1px solid #222222;
   border-radius: 0.5rem;
+}
+
+.form {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1e1e1;
+}
+.form img {
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 1px solid #222222;
+  border-radius: 0.5rem;
+}
+.form textarea {
+  width: 100%;
+  height: 2.5rem;
+  overflow: hidden;
+  resize: none;
+  padding: 0.5rem 1rem;
+  background-color: #e1e1e1;
+  border: 1px solid #9e9e9e;
+  border-radius: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: background-color, height 0.2s ease;
+}
+.form textarea:focus {
+  background-color: white;
+  height: 7.5rem;
+  overflow: auto;
+  outline: 2px solid #fb8500;
+  border: none;
+}
+.form textarea::-moz-placeholder {
+  color: #222222;
+}
+.form textarea:-ms-input-placeholder {
+  color: #222222;
+}
+.form textarea::placeholder {
+  color: #222222;
+}
+.form button {
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  background: none;
+  color: #222222;
+  border: 2px solid #9e9e9e;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.form button:hover {
+  border-color: #fb8500;
+  background-color: #fb8500;
+}
+.form button .icon {
+  color: #9e9e9e;
+  transition: all 0.2s ease;
+}
+.form button:hover .icon {
+  color: white;
+}
+
+.sending {
+  height: 2.5rem;
 }
 
 @media (min-width: 1250px) {
