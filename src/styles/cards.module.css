@@ -112,7 +112,6 @@
     border-radius: 1rem 1rem 0 0;
   }
   .container .large_card .img_container::after {
-    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 1rem 1rem 0 0;
   }
   .container .large_card .content {
