@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const api = axios.create({ baseURL: "https://nc-games-api.onrender.com/api" });
 
@@ -22,4 +23,26 @@ async function getUser(username) {
   return data.user;
 }
 
-export { getReviews, getReviewById, getReviewComments, getUser };
+async function loginUser(userInfo) {
+  const { data } = await api.post("/users/login", userInfo);
+  const { token } = data;
+  return token;
+}
+
+function patchReviewVote(id, inc_votes, token) {
+  return api.patch(
+    "/reviews/" + id,
+    { inc_votes },
+    { headers: { "x-access-token": token } }
+  );
+}
+
+export {
+  getReviews,
+  getReviewById,
+  getReviewComments,
+  getUser,
+  loginUser,
+  jwt_decode,
+  patchReviewVote,
+};
