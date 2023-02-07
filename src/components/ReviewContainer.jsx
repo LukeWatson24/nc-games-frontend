@@ -6,9 +6,8 @@ function ReviewContainer() {
   const { review_id } = useParams();
   return (
     <main>
-      {review_id}
-      <ReviewInfo />
-      <ReviewComments />
+      <ReviewInfo reviewId={review_id} />
+      <ReviewComments reviewId={review_id} />
     </main>
   );
 }

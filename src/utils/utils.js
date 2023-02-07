@@ -7,4 +7,19 @@ async function getReviews(queries) {
   return data.reviews;
 }
 
-export { getReviews };
+async function getReviewById(id) {
+  const { data } = await api.get("/reviews/" + id);
+  return data.review;
+}
+
+async function getReviewComments(id) {
+  const { data } = await api.get("/reviews/" + id + "/comments");
+  return data.comments;
+}
+
+async function getUser(username) {
+  const { data } = await api.get("/users/" + username);
+  return data.user;
+}
+
+export { getReviews, getReviewById, getReviewComments, getUser };
