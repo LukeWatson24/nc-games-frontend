@@ -23,7 +23,12 @@ function ReviewsContainer() {
       <Filter />
       <Reviews reviews={reviews} />
       <p className={loading ? "" : utils.hidden}>Loading...</p>
-      <button onClick={() => setPage((prev) => prev + 1)}>Load More</button>
+      <button
+        className={loading ? utils.hidden : ""}
+        onClick={() => setPage((prev) => prev + 1)}
+      >
+        Load More
+      </button>
     </main>
   );
 }
