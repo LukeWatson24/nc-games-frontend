@@ -3,6 +3,7 @@ import { getReviewComments } from "../utils/utils";
 import styles from "../styles/review.module.scss";
 import utils from "../styles/utils.module.scss";
 import Comment from "./Comment";
+import CommentForm from "./CommentForm";
 
 function ReviewComments({ reviewId }) {
   const [comments, setComments] = useState([]);
@@ -26,6 +27,7 @@ function ReviewComments({ reviewId }) {
               <Comment key={comment.comment_id} comment={comment} />
             ))}
       </div>
+      <CommentForm />
     </section>
   );
 }
