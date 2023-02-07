@@ -1,0 +1,66 @@
+@import "./variables.scss";
+
+.nav {
+  z-index: 99;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 5rem;
+  width: 100%;
+  // max-width: 1200px;
+
+  background-color: white;
+  border-bottom: 1px solid $color-very-light;
+
+  font-family: $font-base;
+
+  &::before {
+    content: "PLACEHOLDER NAV";
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    z-index: 99;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 5rem;
+    width: 100%;
+
+    padding: 0 10rem;
+
+    background-color: white;
+    border-bottom: 1px solid $color-very-light;
+
+    font-family: $font-base;
+
+    &::before {
+      display: none;
+    }
+
+    .left {
+      display: flex;
+      justify-content: space-between;
+
+      width: 30%;
+    }
+
+    .nav_link {
+      text-decoration: none;
+      color: $color-dark;
+    }
+
+    .burger {
+      display: none;
+    }
+  }
+}
