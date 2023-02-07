@@ -1,0 +1,29 @@
+@import "./variables.scss";
+
+div.container {
+  margin: 1rem 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-top: 1px solid $color-very-light;
+  border-bottom: 1px solid $color-very-light;
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    .icon {
+      color: $color-light;
+      display: flex;
+      height: 20px;
+      padding: 0 1rem;
+      transition: all 0.2s ease;
+    }
+
+    &:hover .icon {
+      color: $color-dark;
+    }
+  }
+}
