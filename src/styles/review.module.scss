@@ -137,6 +137,10 @@
     justify-content: center;
     transition: all 0.2s ease;
 
+    &:disabled {
+      border-color: $color-very-light;
+    }
+
     &:hover {
       border-color: $color-orange;
       background-color: $color-orange;
@@ -145,6 +149,10 @@
     .icon {
       color: $color-light;
       transition: all 0.2s ease;
+    }
+
+    &:disabled .icon {
+      color: $color-very-light;
     }
 
     &:hover .icon {

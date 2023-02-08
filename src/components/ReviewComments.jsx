@@ -15,7 +15,7 @@ function ReviewComments({ reviewId }) {
       setComments(res);
       setLoading(false);
     });
-  }, []);
+  }, [reviewId]);
   return (
     <section className={styles.comments}>
       <h2 className={!loading ? "" : utils.hidden}>Comments</h2>

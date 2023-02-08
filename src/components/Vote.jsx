@@ -7,7 +7,7 @@ import ErrorMessage from "./ErrorMessage";
 function Vote({ isReview, id, votes }) {
   const [reviewVotes, setReviewVotes] = useState(votes);
   const [error, setError] = useState(null);
-  const token = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const voteHandler = (inc) => {
     setReviewVotes((prev) => prev + inc);
     if (isReview) {

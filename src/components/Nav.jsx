@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import { TokenContext } from "../context/TokenContext";
 import styles from "../styles/Nav.module.scss";
 
 function Nav() {
+  const { setToken, setLogin, user } = useContext(TokenContext);
   return (
     <nav className={styles.nav}>
       <div className={styles.burger}>
@@ -21,7 +24,13 @@ function Nav() {
           Users
         </Link>
       </div>
-      <div className={styles.right}>USER INFO</div>
+      <div className={styles.right}>
+        {user !== null ? (
+          <button onClick={() => setToken(undefined)}>TEMP LOGOUT</button>
+        ) : (
+          <button onClick={() => setLogin(true)}>TEMP LOGIN</button>
+        )}
+      </div>
     </nav>
   );
 }
