@@ -16,6 +16,9 @@
 .nav::before {
   content: "PLACEHOLDER NAV";
 }
+.nav .right button {
+  color: black;
+}
 
 @media (min-width: 1024px) {
   .nav {
