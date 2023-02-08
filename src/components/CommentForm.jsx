@@ -15,15 +15,10 @@ function CommentForm({ reviewId, setComments }) {
       .then(({ username }) =>
         postReviewComment(reviewId, comment, username, token)
       )
-      .then(() => setSending(false));
-    setComments((prev) => [
-      {
-        comment_id: Math.floor(prev.length * Math.random() * 1000), // will be changed
-        body: comment,
-        author: user.username,
-      },
-      ...prev,
-    ]);
+      .then((newComment) => {
+        setComments((prev) => [newComment, ...prev]);
+        setSending(false);
+      });
     setComment("");
   };
 

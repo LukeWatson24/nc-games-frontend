@@ -38,12 +38,14 @@ async function getLoggedInUser(token) {
   return await getUser(username);
 }
 
-function postReviewComment(id, body, username, token) {
-  return api.post(
+async function postReviewComment(id, body, username, token) {
+  const { data } = await api.post(
     `/reviews/${id}/comments`,
     { username, body },
     setTokenHeader(token)
   );
+
+  return data.comment;
 }
 
 function setTokenHeader(token) {
