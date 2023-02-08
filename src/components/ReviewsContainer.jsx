@@ -1,26 +1,56 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getReviews } from "../utils/utils";
+import styles from "../styles/filter.module.scss";
 import utils from "../styles/utils.module.scss";
 import Filter from "./Filter";
 import Reviews from "./Reviews";
+import Sort from "./Sort";
 
 function ReviewsContainer() {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [filter, setfilter] = useState({});
+  const [sort, setSort] = useState("created_at");
+  const [order, setOrder] = useState("desc");
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
     setLoading(true);
-    getReviews({ limit: 6 * page }).then((res) => {
+
+    getReviews(formatQueries()).then((res) => {
       setReviews(res);
       setLoading(false);
     });
-  }, [page]);
+
+    function formatQueries() {
+      const query = { limit: 6 * page, sort_by: sort, order };
+      if (params.has("category")) {
+        const filter = params.get("category");
+        if (filter !== "all") {
+          query.category = filter;
+        }
+      }
+      return query;
+    }
+  }, [page, params, setParams, order, sort]);
+
+  function flipHandler(e) {
+    e.preventDefault();
+    order === "asc" ? setOrder("desc") : setOrder("asc");
+  }
 
   return (
     <main>
-      <Filter />
+      <form className={styles.container} onSubmit={(e) => flipHandler(e)}>
+        <Filter setParams={setParams} params={params} loading={loading} />
+        <Sort setSort={setSort} loading={loading} />
+        <button disabled={loading} type="submit">
+          <span class={`material-symbols-outlined ${styles.icon}`}>
+            swap_vert
+          </span>
+        </button>
+      </form>
       <Reviews reviews={reviews} />
       <p className={loading ? "" : utils.hidden}>Loading...</p>
       <button

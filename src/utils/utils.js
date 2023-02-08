@@ -52,6 +52,11 @@ function setTokenHeader(token) {
   return { headers: { "x-access-token": token } };
 }
 
+async function getCategories() {
+  const { data } = await api.get("/categories");
+  return data.categories;
+}
+
 export {
   getReviews,
   getReviewById,
@@ -61,4 +66,5 @@ export {
   patchReviewVote,
   getLoggedInUser,
   postReviewComment,
+  getCategories,
 };
