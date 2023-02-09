@@ -14,7 +14,6 @@ function ReviewsContainer() {
 
   useEffect(() => {
     setLoading(true);
-
     getReviews(formatQueries()).then((res) => {
       setReviews(res);
       setLoading(false);
@@ -34,7 +33,7 @@ function ReviewsContainer() {
 
   return (
     <main>
-      <form className={styles.container} onSubmit={(e) => flipHandler(e)}>
+      <form className={styles.container}>
         <Filter setParams={setParams} params={params} loading={loading} />
       </form>
       <Reviews reviews={reviews} />
