@@ -77,23 +77,44 @@
       }
     }
 
-    .owner {
+    .info_wrapper {
       display: flex;
-      align-items: center;
-      gap: 1rem;
+      width: 100%;
+      justify-content: space-between;
 
       p {
         color: white;
-        font-size: 1rem;
-        font-weight: 400;
       }
 
-      img {
-        height: 2rem;
-        width: 2rem;
-        object-fit: cover;
-        border: 2px solid white;
-        border-radius: 0.5rem;
+      .stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+          display: flex;
+          gap: 0.25rem;
+        }
+      }
+
+      .owner {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        p {
+          color: white;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+
+        img {
+          height: 2rem;
+          width: 2rem;
+          object-fit: cover;
+          border: 2px solid white;
+          border-radius: 0.5rem;
+        }
       }
     }
   }
@@ -148,21 +169,23 @@
           font-size: 1.5rem;
           color: black;
           line-height: 2rem;
-          height: 30%;
-          margin-top: 30%;
+          height: 35%;
         }
       }
 
-      .owner {
-        order: 1;
+      .info_wrapper {
+        height: 50%;
+        align-items: flex-start;
 
-        p {
-          font-size: 1rem;
-        }
+        .owner {
+          p {
+            font-size: 1rem;
+          }
 
-        img {
-          height: 2.5rem;
-          width: 2.5rem;
+          img {
+            height: 2.5rem;
+            width: 2.5rem;
+          }
         }
       }
     }

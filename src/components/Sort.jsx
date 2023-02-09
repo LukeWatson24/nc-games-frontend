@@ -3,11 +3,30 @@ function Sort({ setSort, loading }) {
     <select
       className=""
       disabled={loading}
-      onChange={(e) => setSort(e.target.value)}
+      onChange={(e) => setSort(JSON.parse(e.target.value))}
     >
-      <option value="created_at">Date</option>
-      <option value="comment_count">Comments</option>
-      <option value="votes">Votes</option>
+      <option value={JSON.stringify({ sort_by: "created_at", order: "desc" })}>
+        Newest
+      </option>
+      <option value={JSON.stringify({ sort_by: "created_at", order: "asc" })}>
+        Oldest
+      </option>
+      <option value={JSON.stringify({ sort_by: "votes", order: "desc" })}>
+        Votes high to low
+      </option>
+      <option value={JSON.stringify({ sort_by: "votes", order: "asc" })}>
+        Votes low to high
+      </option>
+      <option
+        value={JSON.stringify({ sort_by: "comment_count", order: "desc" })}
+      >
+        Comments high to low
+      </option>
+      <option
+        value={JSON.stringify({ sort_by: "comment_count", order: "asc" })}
+      >
+        Comments low to high
+      </option>
     </select>
   );
 }

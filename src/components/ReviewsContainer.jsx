@@ -12,18 +12,21 @@ function ReviewsContainer() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [params, setParams] = useSearchParams();
-  const [sort, setSort] = useState("created_at");
-  const [order, setOrder] = useState("desc");
+  const [sort, setSort] = useState({ sort_by: "created_at", order: "desc" });
 
   useEffect(() => {
     setLoading(true);
     getReviews(formatQueries()).then((res) => {
-      setReviews(res);
+      if (page === 1) {
+        setReviews(res);
+      } else {
+        setReviews((old) => [...old, ...res]);
+      }
       setLoading(false);
     });
 
     function formatQueries() {
-      const query = { limit: 6 * page, sort_by: sort, order };
+      const query = { limit: 6, p: page, ...sort };
       if (params.has("category")) {
         const filter = params.get("category");
         if (filter !== "all") {
@@ -32,23 +35,13 @@ function ReviewsContainer() {
       }
       return query;
     }
-  }, [page, params, setParams, sort, order]);
-
-  function flipHandler(e) {
-    e.preventDefault();
-    order === "asc" ? setOrder("desc") : setOrder("asc");
-  }
+  }, [page, params, sort]);
 
   return (
     <main>
-      <form className={styles.container} onSubmit={(e) => flipHandler(e)}>
+      <form className={styles.container}>
         <Filter setParams={setParams} params={params} loading={loading} />
         <Sort setSort={setSort} loading={loading} />
-        <button disabled={loading} type="submit">
-          <span className={`material-symbols-outlined ${styles.icon}`}>
-            swap_vert
-          </span>
-        </button>
       </form>
       <Reviews reviews={reviews} />
       <p className={loading ? "" : utils.hidden}>Loading...</p>

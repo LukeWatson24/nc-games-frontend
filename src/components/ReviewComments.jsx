@@ -11,26 +11,23 @@ function ReviewComments({ reviewId }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [intial, setInitial] = useState(true);
 
   useEffect(() => {
-    if (intial) {
-      setLoading(true);
-      getReviewComments(reviewId).then((res) => {
-        setComments(res);
-        setLoading(false);
-        setInitial(false);
-      });
-    }
+    setLoading(true);
+    getReviewComments(reviewId).then((res) => {
+      setComments(res);
+      setLoading(false);
+    });
   }, [reviewId]);
 
   useEffect(() => {
-    if (!intial) {
-      getReviewComments(reviewId, { p: page }).then((res) =>
-        setComments((prev) => [...prev, ...res])
-      );
-    }
-  }, [page]);
+    if (page === 1) return;
+    setLoading(true);
+    getReviewComments(reviewId, { p: page }).then((res) => {
+      setComments((old) => [...old, ...res]);
+      setLoading(false);
+    });
+  }, [reviewId, page]);
 
   return (
     <section className={styles.comments}>
