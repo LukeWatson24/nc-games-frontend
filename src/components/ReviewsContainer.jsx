@@ -10,8 +10,6 @@ function ReviewsContainer() {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [sort, setSort] = useState("created_at");
-  const [order, setOrder] = useState("desc");
   const [params, setParams] = useSearchParams();
 
   useEffect(() => {
@@ -23,7 +21,7 @@ function ReviewsContainer() {
     });
 
     function formatQueries() {
-      const query = { limit: 6 * page, sort_by: sort, order };
+      const query = { limit: 6 * page };
       if (params.has("category")) {
         const filter = params.get("category");
         if (filter !== "all") {
@@ -32,12 +30,7 @@ function ReviewsContainer() {
       }
       return query;
     }
-  }, [page, params, setParams, order, sort]);
-
-  function flipHandler(e) {
-    e.preventDefault();
-    order === "asc" ? setOrder("desc") : setOrder("asc");
-  }
+  }, [page, params, setParams]);
 
   return (
     <main>
