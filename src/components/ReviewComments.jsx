@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getReviewComments } from "../utils/utils";
 import styles from "../styles/review.module.scss";
 import utils from "../styles/utils.module.scss";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
+import { TokenContext } from "../context/TokenContext";
 
 function ReviewComments({ reviewId, error }) {
+  const { user, token } = useContext(TokenContext);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
@@ -16,6 +19,15 @@ function ReviewComments({ reviewId, error }) {
       setLoading(false);
     });
   }, [reviewId]);
+
+  useEffect(() => {
+    if (page === 1) return;
+    setLoading(true);
+    getReviewComments(reviewId, { p: page }).then((res) => {
+      setComments((old) => [...old, ...res]);
+      setLoading(false);
+    });
+  }, [reviewId, page]);
 
   if (error) return;
 
@@ -32,9 +44,16 @@ function ReviewComments({ reviewId, error }) {
         {comments.length === 0
           ? "No comments yet..."
           : comments.map((comment) => (
-              <Comment key={comment.comment_id} comment={comment} />
+              <Comment
+                key={comment.comment_id}
+                comment={comment}
+                username={user?.username}
+                token={token}
+                setComments={setComments}
+              />
             ))}
       </div>
+      <button onClick={() => setPage((prev) => prev + 1)}>LOAD MORE</button>
     </section>
   );
 }

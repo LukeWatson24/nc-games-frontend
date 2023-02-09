@@ -18,7 +18,7 @@ function ReviewInfo({ reviewId, error, setError }) {
       .catch((err) => {
         setError(true);
       });
-  }, []);
+  }, [reviewId, setError]);
 
   if (error)
     return (

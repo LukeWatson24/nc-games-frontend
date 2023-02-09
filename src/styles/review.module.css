@@ -51,21 +51,28 @@
   padding-bottom: 1rem;
   margin-bottom: 0.5rem;
 }
-.single_comment .user {
+.single_comment .top {
+  display: flex;
+  justify-content: space-between;
+}
+.single_comment .top .user {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.single_comment .user p {
+.single_comment .top .user p {
   font-weight: 500;
 }
-.single_comment .user img {
+.single_comment .top .user img {
   height: 2.5rem;
   width: 2.5rem;
   -o-object-fit: cover;
      object-fit: cover;
   border: 1px solid #222222;
   border-radius: 0.5rem;
+}
+.single_comment .top button {
+  color: black;
 }
 
 .form {

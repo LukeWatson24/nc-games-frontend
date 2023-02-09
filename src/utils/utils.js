@@ -13,8 +13,10 @@ async function getReviewById(id) {
   return data.review;
 }
 
-async function getReviewComments(id) {
-  const { data } = await api.get(`/reviews/${id}/comments`);
+async function getReviewComments(id, queries) {
+  const { data } = await api.get(`/reviews/${id}/comments`, {
+    params: queries,
+  });
   return data.comments;
 }
 
@@ -52,6 +54,39 @@ function setTokenHeader(token) {
   return { headers: { "x-access-token": token } };
 }
 
+async function getCategories() {
+  const { data } = await api.get("/categories");
+  return data.categories;
+}
+
+function deleteComment(id, token) {
+  return api.delete(`/comments/${id}`, setTokenHeader(token));
+}
+
+function formatDate(dateS) {
+  const timeNow = new Date().getTime();
+
+  const seconds = (timeNow - dateS) / 1000;
+  if (seconds < 60) {
+    return `Less than a minute ago`;
+  }
+  const minutes = seconds / 60;
+  const roundedMins = Math.floor(minutes);
+  if (minutes < 60)
+    return roundedMins === 1 ? "1 minute ago" : `${roundedMins} minutes ago`;
+  const hours = minutes / 60;
+  const roundedHours = Math.floor(hours);
+  if (hours < 24)
+    return roundedHours === 1 ? "1 hour ago" : `${roundedHours} hours ago`;
+  const days = hours / 24;
+  const roundedDays = Math.floor(days);
+  if (days < 365)
+    return roundedDays === 1 ? "1 day ago" : `${roundedDays} days ago`;
+  return Math.floor(days / 365) === 1
+    ? "1 year ago"
+    : `${Math.floor(days / 365)} years ago`;
+}
+
 export {
   getReviews,
   getReviewById,
@@ -61,4 +96,7 @@ export {
   patchReviewVote,
   getLoggedInUser,
   postReviewComment,
+  getCategories,
+  deleteComment,
+  formatDate,
 };
