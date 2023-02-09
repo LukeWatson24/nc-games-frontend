@@ -54,6 +54,11 @@ function setTokenHeader(token) {
   return { headers: { "x-access-token": token } };
 }
 
+async function getCategories() {
+  const { data } = await api.get("/categories");
+  return data.categories;
+}
+
 function deleteComment(id, token) {
   return api.delete(`/comments/${id}`, setTokenHeader(token));
 }
@@ -67,5 +72,6 @@ export {
   patchReviewVote,
   getLoggedInUser,
   postReviewComment,
+  getCategories,
   deleteComment,
 };

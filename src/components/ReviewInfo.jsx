@@ -14,7 +14,7 @@ function ReviewInfo({ reviewId }) {
       setReview(res);
       setLoading(false);
     });
-  }, []);
+  }, [reviewId]);
 
   return (
     <section className={styles.content}>
