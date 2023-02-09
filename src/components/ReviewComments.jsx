@@ -5,7 +5,7 @@ import utils from "../styles/utils.module.scss";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
-function ReviewComments({ reviewId }) {
+function ReviewComments({ reviewId, error }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -16,11 +16,18 @@ function ReviewComments({ reviewId }) {
       setLoading(false);
     });
   }, [reviewId]);
+
+  if (error) return;
+
   return (
     <section className={styles.comments}>
       <h2 className={!loading ? "" : utils.hidden}>Comments</h2>
       <p className={loading ? "" : utils.hidden}>Loading...</p>
-      <CommentForm reviewId={reviewId} setComments={setComments} />
+      <CommentForm
+        loading={loading}
+        reviewId={reviewId}
+        setComments={setComments}
+      />
       <div className={styles.wrapper}>
         {comments.length === 0
           ? "No comments yet..."

@@ -4,17 +4,28 @@ import styles from "../styles/review.module.scss";
 import utils from "../styles/utils.module.scss";
 import Vote from "./Vote";
 
-function ReviewInfo({ reviewId }) {
+function ReviewInfo({ reviewId, error, setError }) {
   const [review, setReview] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    getReviewById(reviewId).then((res) => {
-      setReview(res);
-      setLoading(false);
-    });
+    getReviewById(reviewId)
+      .then((res) => {
+        setReview(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(true);
+      });
   }, []);
+
+  if (error)
+    return (
+      <section className={styles.content}>
+        <h1>Review Not found</h1>
+      </section>
+    );
 
   return (
     <section className={styles.content}>
