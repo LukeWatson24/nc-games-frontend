@@ -27,7 +27,10 @@ function ReviewsContainer() {
         }
         setLoading(false);
       })
-      .catch(() => setError(true));
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
 
     function formatQueries() {
       const query = { limit: 6, p: page, ...sort };
@@ -44,7 +47,17 @@ function ReviewsContainer() {
   if (error)
     return (
       <main>
-        <h1>No Reviews Found</h1>
+        <h1 className={styles.heading}>Browse Reviews</h1>
+        <form className={styles.container}>
+          <Filter
+            setParams={setParams}
+            setPage={setPage}
+            params={params}
+            loading={loading}
+          />
+          <Sort setSort={setSort} setPage={setPage} loading={loading} />
+        </form>
+        <h2>No Reviews Found</h2>
       </main>
     );
 
