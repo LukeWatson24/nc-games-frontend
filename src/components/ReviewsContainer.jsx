@@ -5,7 +5,6 @@ import styles from "../styles/filter.module.scss";
 import utils from "../styles/utils.module.scss";
 import Filter from "./Filter";
 import Reviews from "./Reviews";
-import Sort from "./Sort";
 
 function ReviewsContainer() {
   const [reviews, setReviews] = useState([]);
@@ -44,12 +43,6 @@ function ReviewsContainer() {
     <main>
       <form className={styles.container} onSubmit={(e) => flipHandler(e)}>
         <Filter setParams={setParams} params={params} loading={loading} />
-        <Sort setSort={setSort} loading={loading} />
-        <button disabled={loading} type="submit">
-          <span class={`material-symbols-outlined ${styles.icon}`}>
-            swap_vert
-          </span>
-        </button>
       </form>
       <Reviews reviews={reviews} />
       <p className={loading ? "" : utils.hidden}>Loading...</p>

@@ -78,5 +78,9 @@
   .container {
     justify-content: flex-end;
     gap: 1rem;
+
+    select {
+      font-size: 1rem;
+    }
   }
 }

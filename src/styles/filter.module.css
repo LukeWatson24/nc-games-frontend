@@ -63,4 +63,7 @@
     justify-content: flex-end;
     gap: 1rem;
   }
+  .container select {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=filter.module.css.map */
