@@ -13,8 +13,10 @@ async function getReviewById(id) {
   return data.review;
 }
 
-async function getReviewComments(id) {
-  const { data } = await api.get(`/reviews/${id}/comments`);
+async function getReviewComments(id, queries) {
+  const { data } = await api.get(`/reviews/${id}/comments`, {
+    params: queries,
+  });
   return data.comments;
 }
 
@@ -57,6 +59,10 @@ async function getCategories() {
   return data.categories;
 }
 
+function deleteComment(id, token) {
+  return api.delete(`/comments/${id}`, setTokenHeader(token));
+}
+
 export {
   getReviews,
   getReviewById,
@@ -67,4 +73,5 @@ export {
   getLoggedInUser,
   postReviewComment,
   getCategories,
+  deleteComment,
 };
