@@ -5,7 +5,7 @@ import { TokenContext } from "../context/TokenContext";
 import styles from "../styles/Nav.module.scss";
 
 function Nav() {
-  const { setToken, setLogin, user, login } = useContext(TokenContext);
+  const { setToken, user, login } = useContext(TokenContext);
   return (
     <nav className={styles.nav}>
       <div className={styles.burger}>
@@ -28,9 +28,9 @@ function Nav() {
         {user !== null ? (
           <button onClick={() => setToken(undefined)}>TEMP LOGOUT</button>
         ) : (
-          <button disabled={login} onClick={() => setLogin(true)}>
-            TEMP LOGIN
-          </button>
+          <Link to="/login" disabled={login}>
+            Login or Sign Up
+          </Link>
         )}
       </div>
     </nav>

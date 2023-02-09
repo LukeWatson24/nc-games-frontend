@@ -87,6 +87,10 @@ function formatDate(dateS) {
     : `${Math.floor(days / 365)} years ago`;
 }
 
+function postUser(details) {
+  return api.post("/users", details);
+}
+
 export {
   getReviews,
   getReviewById,
@@ -99,4 +103,5 @@ export {
   getCategories,
   deleteComment,
   formatDate,
+  postUser,
 };
