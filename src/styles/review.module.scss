@@ -60,21 +60,30 @@
   padding-bottom: 1rem;
   margin-bottom: 0.5rem;
 
-  .user {
+  .top {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
 
-    p {
-      font-weight: 500;
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      p {
+        font-weight: 500;
+      }
+
+      img {
+        height: 2.5rem;
+        width: 2.5rem;
+        object-fit: cover;
+        border: 1px solid $color-dark;
+        border-radius: 0.5rem;
+      }
     }
 
-    img {
-      height: 2.5rem;
-      width: 2.5rem;
-      object-fit: cover;
-      border: 1px solid $color-dark;
-      border-radius: 0.5rem;
+    button {
+      color: black;
     }
   }
 }
