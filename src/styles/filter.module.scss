@@ -3,7 +3,8 @@
 .container {
   height: 3rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  width: 100%;
   margin: 1rem 0;
 
   select {
@@ -11,14 +12,12 @@
 
     padding: 0.5rem;
 
-    margin-right: 1rem;
-
     outline-color: $color-orange;
     border: 2px solid $color-light;
     border-radius: 0.5rem;
 
     font-family: $font-base;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: $color-dark;
     text-transform: capitalize;
     transition: all 0.2s ease;
@@ -40,8 +39,6 @@
 
   button {
     cursor: pointer;
-    margin-left: -0.75rem;
-
     width: 3rem;
     background: none;
     outline-color: $color-orange;
@@ -74,5 +71,12 @@
     &:hover .icon {
       color: white;
     }
+  }
+}
+
+@media (min-width: 540px) {
+  .container {
+    justify-content: flex-end;
+    gap: 1rem;
   }
 }
