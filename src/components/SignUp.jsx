@@ -30,7 +30,7 @@ function SignUp({ setDetails, activeTab, setActiveTab }) {
 
   if (loading)
     return (
-      <div className={activeTab === 0 ? styles.form : utils.hidden}>
+      <div className={activeTab === 1 ? styles.form : utils.hidden}>
         <p>Loading...</p>
       </div>
     );
@@ -85,6 +85,15 @@ function SignUp({ setDetails, activeTab, setActiveTab }) {
           id="confirm-password-input"
           type="password"
         />
+        <p
+          className={
+            verifyPassword !== "" && password !== verifyPassword
+              ? ""
+              : utils.hidden
+          }
+        >
+          Passwords must match
+        </p>
       </div>
       <button
         disabled={username === "" || name === "" || password !== verifyPassword}
