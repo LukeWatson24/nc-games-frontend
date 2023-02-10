@@ -35,9 +35,10 @@
 
 .comments {
   font-family: $font-base;
-  // margin-top: 1rem;
   width: 100%;
   max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr;
 
   .wrapper {
     display: flex;
@@ -49,6 +50,37 @@
     font-weight: 500;
     font-size: 1.25rem;
     margin-bottom: 1rem;
+  }
+
+  .button {
+    cursor: pointer;
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    justify-self: center;
+
+    background: none;
+    border: 2px solid $color-light;
+    border-radius: 0.5rem;
+
+    font-family: $font-base;
+    font-weight: 500;
+    color: $color-light;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $color-orange;
+      background-color: $color-orange;
+      color: white;
+    }
+
+    &:disabled {
+      border-color: $color-very-light;
+      color: $color-very-light;
+    }
+
+    &:disabled:hover {
+      background: none;
+    }
   }
 }
 
@@ -83,7 +115,14 @@
     }
 
     button {
-      color: black;
+      cursor: pointer;
+      background: none;
+      color: $color-light;
+      border: none;
+      &:hover {
+        background: none;
+        color: $color-orange;
+      }
     }
   }
 }
@@ -145,6 +184,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    margin: 0;
 
     &:disabled {
       border-color: $color-very-light;

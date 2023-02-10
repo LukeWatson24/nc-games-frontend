@@ -54,7 +54,12 @@ function ReviewComments({ reviewId, error, waiting }) {
               />
             ))}
       </div>
-      <button onClick={() => setPage((prev) => prev + 1)}>LOAD MORE</button>
+      <button
+        className={styles.button}
+        onClick={() => setPage((prev) => prev + 1)}
+      >
+        LOAD MORE
+      </button>
     </section>
   );
 }

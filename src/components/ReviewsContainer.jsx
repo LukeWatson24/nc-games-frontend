@@ -62,7 +62,7 @@ function ReviewsContainer() {
     );
 
   return (
-    <main>
+    <main className={styles.main}>
       <h1 className={styles.heading}>Browse Reviews</h1>
       <form className={styles.container}>
         <Filter
@@ -76,7 +76,7 @@ function ReviewsContainer() {
       <Reviews reviews={reviews} />
       <p className={loading ? "" : utils.hidden}>Loading...</p>
       <button
-        className={loading ? utils.hidden : ""}
+        className={loading ? utils.hidden : styles.button}
         onClick={() => setPage((prev) => prev + 1)}
       >
         Load More

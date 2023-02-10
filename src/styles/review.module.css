@@ -31,6 +31,8 @@
   font-family: "Poppins", sans-serif;
   width: 100%;
   max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 .comments .wrapper {
   display: flex;
@@ -41,6 +43,31 @@
   font-weight: 500;
   font-size: 1.25rem;
   margin-bottom: 1rem;
+}
+.comments .button {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  justify-self: center;
+  background: none;
+  border: 2px solid #9e9e9e;
+  border-radius: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #9e9e9e;
+  transition: all 0.2s ease;
+}
+.comments .button:hover {
+  border-color: #fb8500;
+  background-color: #fb8500;
+  color: white;
+}
+.comments .button:disabled {
+  border-color: #e1e1e1;
+  color: #e1e1e1;
+}
+.comments .button:disabled:hover {
+  background: none;
 }
 
 .single_comment {
@@ -72,7 +99,14 @@
   border-radius: 0.5rem;
 }
 .single_comment .top button {
-  color: black;
+  cursor: pointer;
+  background: none;
+  color: #9e9e9e;
+  border: none;
+}
+.single_comment .top button:hover {
+  background: none;
+  color: #fb8500;
 }
 
 .form {
@@ -132,6 +166,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  margin: 0;
 }
 .form button:disabled {
   border-color: #e1e1e1;

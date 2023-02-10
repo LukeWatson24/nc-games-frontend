@@ -28,7 +28,9 @@ function Comment({ comment, username, token, setComments }) {
           onClick={deleteHandler}
           className={username === comment.author ? "" : utils.hidden}
         >
-          DELETE
+          <span className={`material-symbols-outlined ${styles.icon}`}>
+            delete
+          </span>
         </button>
       </div>
       <p>{comment.body}</p>
