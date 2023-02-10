@@ -6,7 +6,7 @@ import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import { TokenContext } from "../context/TokenContext";
 
-function ReviewComments({ reviewId }) {
+function ReviewComments({ reviewId, error, waiting }) {
   const { user, token } = useContext(TokenContext);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,11 +29,18 @@ function ReviewComments({ reviewId }) {
     });
   }, [reviewId, page]);
 
+  if (error) return;
+  if (waiting) return;
+
   return (
     <section className={styles.comments}>
       <h2 className={!loading ? "" : utils.hidden}>Comments</h2>
       <p className={loading ? "" : utils.hidden}>Loading...</p>
-      <CommentForm reviewId={reviewId} setComments={setComments} />
+      <CommentForm
+        loading={loading}
+        reviewId={reviewId}
+        setComments={setComments}
+      />
       <div className={styles.wrapper}>
         {comments.length === 0
           ? "No comments yet..."

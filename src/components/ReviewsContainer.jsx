@@ -13,17 +13,24 @@ function ReviewsContainer() {
   const [loading, setLoading] = useState(false);
   const [params, setParams] = useSearchParams();
   const [sort, setSort] = useState({ sort_by: "created_at", order: "desc" });
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    getReviews(formatQueries()).then((res) => {
-      if (page === 1) {
-        setReviews(res);
-      } else {
-        setReviews((old) => [...old, ...res]);
-      }
-      setLoading(false);
-    });
+    getReviews(formatQueries())
+      .then((res) => {
+        setError(false);
+        if (page === 1) {
+          setReviews(res);
+        } else {
+          setReviews((old) => [...old, ...res]);
+        }
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
 
     function formatQueries() {
       const query = { limit: 6, p: page, ...sort };
@@ -37,11 +44,34 @@ function ReviewsContainer() {
     }
   }, [page, params, sort]);
 
+  if (error)
+    return (
+      <main>
+        <h1 className={styles.heading}>Browse Reviews</h1>
+        <form className={styles.container}>
+          <Filter
+            setParams={setParams}
+            setPage={setPage}
+            params={params}
+            loading={loading}
+          />
+          <Sort setSort={setSort} setPage={setPage} loading={loading} />
+        </form>
+        <h2>No Reviews Found</h2>
+      </main>
+    );
+
   return (
     <main>
+      <h1 className={styles.heading}>Browse Reviews</h1>
       <form className={styles.container}>
-        <Filter setParams={setParams} params={params} loading={loading} />
-        <Sort setSort={setSort} loading={loading} />
+        <Filter
+          setParams={setParams}
+          setPage={setPage}
+          params={params}
+          loading={loading}
+        />
+        <Sort setSort={setSort} setPage={setPage} loading={loading} />
       </form>
       <Reviews reviews={reviews} />
       <p className={loading ? "" : utils.hidden}>Loading...</p>

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import HomeContainer from "./components/HomeContainer";
 import Nav from "./components/Nav";
+import NotFound from "./components/NotFound";
 import ReviewContainer from "./components/ReviewContainer";
 import ReviewsContainer from "./components/ReviewsContainer";
 
@@ -12,6 +13,7 @@ function App() {
         <Route path="/reviews" element={<ReviewsContainer />} />
         <Route path="/reviews/:review_id" element={<ReviewContainer />} />
         <Route path="/" element={<HomeContainer />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

@@ -60,7 +60,7 @@
   font-weight: 400;
   border-radius: 0.5rem;
 }
-.container .large_card .content h3 {
+.container .large_card .content h2 {
   font-size: 1.25rem;
   font-weight: 500;
   color: white;
@@ -143,10 +143,11 @@
     font-size: 1.25rem;
     align-self: flex-end;
   }
-  .container .large_card .content h3 {
+  .container .large_card .content h2 {
     order: 2;
     font-size: 1.5rem;
-    color: black;
+    font-weight: 500;
+    color: #222222;
     line-height: 2rem;
     height: 35%;
   }

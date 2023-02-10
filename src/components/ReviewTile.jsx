@@ -16,7 +16,7 @@ function ReviewTile({ review }) {
       </div>
       <div className={styles.content}>
         <p className={styles.tag}>{review.category}</p>
-        <h3>{review.title}</h3>
+        <h2>{review.title}</h2>
         <div className={styles.info_wrapper}>
           <div className={styles.owner}>
             <img

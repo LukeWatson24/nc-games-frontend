@@ -3,7 +3,7 @@ import { getLoggedInUser, postReviewComment } from "../utils/utils";
 import { TokenContext } from "../context/TokenContext";
 import styles from "../styles/review.module.scss";
 
-function CommentForm({ reviewId, setComments }) {
+function CommentForm({ reviewId, setComments, loading }) {
   const { token, user, login } = useContext(TokenContext);
   const [sending, setSending] = useState(false);
   const [comment, setComment] = useState("");
@@ -22,6 +22,7 @@ function CommentForm({ reviewId, setComments }) {
     setComment("");
   };
 
+  if (loading) return;
   if (login) return <p>Loading user...</p>;
   if (sending) return <div className={styles.sending}>Adding comment...</div>;
   if (token === undefined)

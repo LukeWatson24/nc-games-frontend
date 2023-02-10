@@ -1,9 +1,13 @@
-function Sort({ setSort, loading }) {
+function Sort({ setSort, loading, setPage }) {
   return (
     <select
       className=""
       disabled={loading}
-      onChange={(e) => setSort(JSON.parse(e.target.value))}
+      aria-label="sort reviews"
+      onChange={(e) => {
+        setSort(JSON.parse(e.target.value));
+        setPage(1);
+      }}
     >
       <option value={JSON.stringify({ sort_by: "created_at", order: "desc" })}>
         Newest

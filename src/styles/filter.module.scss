@@ -1,5 +1,9 @@
 @import "./variables.scss";
 
+.heading {
+  display: none;
+}
+
 .container {
   height: 3rem;
   display: flex;
