@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { TokenContext } from "../context/TokenContext";
 import styles from "../styles/Nav.module.scss";
+import utils from "../styles/utils.module.scss";
 
 function Nav() {
   const { setToken, user, login } = useContext(TokenContext);
+  const [active, setActive] = useState(false);
+
   return (
     <nav className={styles.nav}>
       <div className={styles.burger}>
@@ -26,9 +29,23 @@ function Nav() {
       </div>
       <div className={styles.right}>
         {user !== null ? (
-          <button onClick={() => setToken(undefined)}>TEMP LOGOUT</button>
+          <div
+            onClick={() => setActive((prev) => !prev)}
+            className={styles.user}
+          >
+            <p>{user.username}</p>
+            <img src={user.avatar_url} alt={user.username} />
+            <span className="material-symbols-outlined">
+              {active ? "arrow_drop_up" : "arrow_drop_down"}
+            </span>
+            <div className={active ? styles.logout : utils.hidden}>
+              <button onClick={() => setToken(undefined)}>
+                Logout <span className="material-symbols-outlined">logout</span>
+              </button>
+            </div>
+          </div>
         ) : (
-          <Link to="/login" disabled={login}>
+          <Link className={styles.nav_link} to="/login" disabled={login}>
             Login or Sign Up
           </Link>
         )}

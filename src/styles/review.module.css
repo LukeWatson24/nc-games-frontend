@@ -135,16 +135,24 @@
 }
 .form button:disabled {
   border-color: #e1e1e1;
+  color: #e1e1e1;
 }
 .form button:hover {
   border-color: #fb8500;
   background-color: #fb8500;
+}
+.form button:disabled:hover {
+  background: none;
+  border-color: #e1e1e1;
 }
 .form button .icon {
   color: #9e9e9e;
   transition: all 0.2s ease;
 }
 .form button:disabled .icon {
+  color: #e1e1e1;
+}
+.form button:disabled:hover .icon {
   color: #e1e1e1;
 }
 .form button:hover .icon {

@@ -148,11 +148,17 @@
 
     &:disabled {
       border-color: $color-very-light;
+      color: $color-very-light;
     }
 
     &:hover {
       border-color: $color-orange;
       background-color: $color-orange;
+    }
+
+    &:disabled:hover {
+      background: none;
+      border-color: $color-very-light;
     }
 
     .icon {
@@ -161,6 +167,10 @@
     }
 
     &:disabled .icon {
+      color: $color-very-light;
+    }
+
+    &:disabled:hover .icon {
       color: $color-very-light;
     }
 
