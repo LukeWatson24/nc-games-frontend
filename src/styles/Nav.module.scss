@@ -22,8 +22,46 @@
     content: "PLACEHOLDER NAV";
   }
 
-  .right button {
-    color: black;
+  .right {
+    position: relative;
+
+    .user {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: none;
+      border: none;
+      color: $color-dark;
+      font-family: $font-base;
+      font-size: 1rem;
+      img {
+        height: 2.5rem;
+        width: 2.5rem;
+        border: 1px solid $color-dark;
+        border-radius: 0.5rem;
+      }
+
+      .logout {
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        border: 1px solid $color-light;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        button {
+          cursor: pointer;
+          display: inline-flex;
+          gap: 1rem;
+          background: none;
+          border: none;
+          color: $color-dark;
+          font-family: $font-base;
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }
 

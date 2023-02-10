@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import HomeContainer from "./components/HomeContainer";
+import LoginContainer from "./components/LoginContainer";
 import Nav from "./components/Nav";
 import NotFound from "./components/NotFound";
 import ReviewContainer from "./components/ReviewContainer";
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/reviews" element={<ReviewsContainer />} />
         <Route path="/reviews/:review_id" element={<ReviewContainer />} />
+        <Route path="/login" element={<LoginContainer />} />
         <Route path="/" element={<HomeContainer />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
