@@ -20,7 +20,6 @@ function SignUp({ setDetails, activeTab, setActiveTab }) {
         ? "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
         : img;
     postUser({ username, name, avatar_url: url, password }).then(() => {
-      setLoading(false);
       setDetails({ username, password });
       setUsername("");
       setPassword("");
