@@ -6,7 +6,7 @@ import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import { TokenContext } from "../context/TokenContext";
 
-function ReviewComments({ reviewId, error }) {
+function ReviewComments({ reviewId, error, waiting }) {
   const { user, token } = useContext(TokenContext);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,6 +30,7 @@ function ReviewComments({ reviewId, error }) {
   }, [reviewId, page]);
 
   if (error) return;
+  if (waiting) return;
 
   return (
     <section className={styles.comments}>

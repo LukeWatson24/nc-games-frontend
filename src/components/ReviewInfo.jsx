@@ -4,9 +4,8 @@ import styles from "../styles/review.module.scss";
 import utils from "../styles/utils.module.scss";
 import Vote from "./Vote";
 
-function ReviewInfo({ reviewId, error, setError }) {
+function ReviewInfo({ reviewId, error, setError, loading, setLoading }) {
   const [review, setReview] = useState({});
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -17,8 +16,9 @@ function ReviewInfo({ reviewId, error, setError }) {
       })
       .catch((err) => {
         setError(true);
+        setLoading(false);
       });
-  }, [reviewId, setError]);
+  }, [reviewId, setError, setLoading]);
 
   if (error)
     return (
