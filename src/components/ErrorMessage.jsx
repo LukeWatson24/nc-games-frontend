@@ -8,14 +8,13 @@ function ErrorMessage({ code, action, setError }) {
     if (code === null) return;
     setShown(true);
     const timer = setTimeout(hide, 3000);
+    function hide() {
+      setError(null);
+      setShown(false);
+    }
 
     return () => clearTimeout(timer);
-  }, [code]);
-
-  function hide() {
-    setError(null);
-    setShown(false);
-  }
+  }, [code, setError]);
 
   let message = "";
 
@@ -25,7 +24,14 @@ function ErrorMessage({ code, action, setError }) {
   return (
     <div className={shown ? styles.wrapper : styles.hidden}>
       <p>{`${message}`}</p>
-      <button onClick={hide}>CLOSE</button>
+      <button
+        onClick={() => {
+          setError(null);
+          setShown(false);
+        }}
+      >
+        CLOSE
+      </button>
     </div>
   );
 }

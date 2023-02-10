@@ -35,7 +35,7 @@ export default function TokenProvider({ children }) {
           setWaiting(false);
         });
     }
-  }, [user, token, details]);
+  }, [user, token, details, navigate]);
 
   return (
     <TokenContext.Provider
