@@ -5,36 +5,96 @@
   position: sticky;
   top: 0;
   left: 0;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
 
   height: 5rem;
   width: 100%;
-  // max-width: 1200px;
 
   background-color: white;
   border-bottom: 1px solid $color-very-light;
 
   font-family: $font-base;
 
-  &::before {
-    content: "PLACEHOLDER NAV";
+  .left,
+  .right {
+    display: none;
   }
 
-  .right {
-    position: relative;
+  .logo {
+    z-index: 100;
+  }
+
+  .burger {
+    cursor: pointer;
+    z-index: 100;
+    height: 1.5rem;
+    width: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .burger_line {
+      width: 2rem;
+      height: 2px;
+      background: $color-dark;
+      transition: all 0.2s ease;
+    }
+
+    .active_top {
+      transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+
+    .active_bottom {
+      transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+    }
+
+    .active_middle {
+      opacity: 0;
+    }
+  }
+}
+
+.mobile_content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+
+  padding: 5rem 2rem 2rem 2rem;
+
+  background-color: white;
+  transition: all 0.2s ease;
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    .nav_link {
+      color: $color-dark;
+      text-decoration: none;
+    }
+  }
+
+  .bottom {
+    .nav_link {
+      color: $color-dark;
+      text-decoration: none;
+    }
 
     .user {
-      cursor: pointer;
-      display: inline-flex;
+      position: relative;
+      display: flex;
       align-items: center;
       gap: 1rem;
-      background: none;
-      border: none;
-      color: $color-dark;
-      font-family: $font-base;
-      font-size: 1rem;
       img {
         height: 2.5rem;
         width: 2.5rem;
@@ -44,11 +104,11 @@
 
       .logout {
         position: absolute;
-        top: 100%;
+        bottom: 100%;
         background-color: white;
         border: 1px solid $color-light;
         border-radius: 0.5rem;
-        margin-top: 1rem;
+        margin-bottom: 1rem;
         padding: 1rem;
         button {
           cursor: pointer;
@@ -65,7 +125,21 @@
   }
 }
 
+.hidden {
+  top: 0;
+  right: 100%;
+  opacity: 0.5;
+}
+
 @media (min-width: 1024px) {
+  .mobile_content {
+    display: none;
+  }
+
+  .logo {
+    display: none;
+  }
+
   .nav {
     z-index: 99;
     position: sticky;
@@ -94,6 +168,48 @@
       justify-content: space-between;
 
       width: 30%;
+    }
+
+    .right {
+      position: relative;
+      display: block;
+      .user {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: none;
+        border: none;
+        color: $color-dark;
+        font-family: $font-base;
+        font-size: 1rem;
+        img {
+          height: 2.5rem;
+          width: 2.5rem;
+          border: 1px solid $color-dark;
+          border-radius: 0.5rem;
+        }
+
+        .logout {
+          position: absolute;
+          top: 100%;
+          background-color: white;
+          border: 1px solid $color-light;
+          border-radius: 0.5rem;
+          margin-top: 1rem;
+          padding: 1rem;
+          button {
+            cursor: pointer;
+            display: inline-flex;
+            gap: 1rem;
+            background: none;
+            border: none;
+            color: $color-dark;
+            font-family: $font-base;
+            font-size: 1rem;
+          }
+        }
+      }
     }
 
     .nav_link {

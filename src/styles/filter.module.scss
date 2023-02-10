@@ -78,6 +78,46 @@
   }
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .button {
+    margin-top: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: auto;
+    padding: 0.5rem 1rem;
+
+    background: none;
+    border: 2px solid $color-light;
+    border-radius: 0.5rem;
+
+    font-family: $font-base;
+    font-weight: 500;
+    color: $color-light;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $color-orange;
+      background-color: $color-orange;
+      color: white;
+    }
+
+    &:disabled {
+      border-color: $color-very-light;
+      color: $color-very-light;
+    }
+
+    &:disabled:hover {
+      background: none;
+    }
+  }
+}
+
 @media (min-width: 540px) {
   .container {
     justify-content: flex-end;

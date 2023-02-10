@@ -5,7 +5,7 @@
 }
 
 main {
-  margin: 0 1.25rem;
+  margin: 0 1.25rem 1rem 1.25rem;
 }
 
 body {
@@ -23,6 +23,6 @@ code {
 
 @media (min-width: 1024px) {
   main {
-    margin: 0 10rem;
+    margin: 0 10rem 1rem 10rem;
   }
 }
