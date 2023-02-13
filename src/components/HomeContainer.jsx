@@ -1,8 +1,10 @@
 import CategoriesContainer from "./CategoriesContainer";
+import PopularContainer from "./PopularContainer";
 
 function HomeContainer() {
   return (
-    <main className="">
+    <main>
+      <PopularContainer />
       <CategoriesContainer />
     </main>
   );
