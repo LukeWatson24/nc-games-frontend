@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { TokenContext } from "../context/TokenContext";
@@ -9,6 +9,16 @@ function Nav() {
   const { setToken, user, login } = useContext(TokenContext);
   const [active, setActive] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
+  useEffect(() => {
+    const setHeight = () => {
+      const doc = window.document.documentElement;
+      doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+    };
+    setHeight();
+    window.addEventListener("resize", setHeight);
+
+    return () => window.removeEventListener("resize", setHeight);
+  }, []);
 
   return (
     <nav className={styles.nav}>
