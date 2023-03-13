@@ -5,8 +5,13 @@ import Category from "./Category";
 
 function CategoriesContainer() {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    getCategories().then((res) => setCategories(res));
+    setLoading(true);
+    getCategories().then((res) => {
+      setLoading(false);
+      setCategories(res);
+    });
   }, []);
   return (
     <section className={styles.cat_container}>
@@ -16,11 +21,15 @@ function CategoriesContainer() {
         </span>{" "}
         Browse by category
       </h2>
-      <div className={styles.cat_wrapper}>
-        {categories.map((category) => (
-          <Category key={category.slug} category={category} />
-        ))}
-      </div>
+      {!loading ? (
+        <div className={styles.cat_wrapper}>
+          {categories.map((category) => (
+            <Category key={category.slug} category={category} />
+          ))}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </section>
   );
 }

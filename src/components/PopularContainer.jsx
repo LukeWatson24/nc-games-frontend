@@ -6,10 +6,13 @@ import ReviewTile from "./ReviewTile";
 
 function PopularContainer() {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    getReviews({ limit: 3, sort_by: "votes", order: "desc" }).then((res) =>
-      setReviews(res)
-    );
+    setLoading(true);
+    getReviews({ limit: 3, sort_by: "votes", order: "desc" }).then((res) => {
+      setLoading(false);
+      setReviews(res);
+    });
   }, []);
   return (
     <section className={styles.cat_container}>
@@ -19,11 +22,15 @@ function PopularContainer() {
         </span>{" "}
         Popular Reviews
       </h2>
-      <div className={cardStyles.container}>
-        {reviews.map((review) => (
-          <ReviewTile key={review.review_id} review={review} />
-        ))}
-      </div>
+      {!loading ? (
+        <div className={cardStyles.container}>
+          {reviews.map((review) => (
+            <ReviewTile key={review.review_id} review={review} />
+          ))}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </section>
   );
 }
